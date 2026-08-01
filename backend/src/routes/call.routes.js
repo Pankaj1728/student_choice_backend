@@ -1,0 +1,13 @@
+const router=require('express').Router();
+const controller=require('../controllers/call.controller');
+const {authenticate,allow}=require('../middleware/auth');
+router.use(authenticate);
+router.get('/stats',allow('calling.view'),controller.stats);
+router.get('/meta',allow('calling.view'),controller.meta);
+router.get('/',allow('calling.view'),controller.list);
+router.post('/',allow('calling.manage'),controller.create);
+router.post('/bulk',allow('calling.manage'),controller.bulkCreate);
+router.post('/:id/convert-to-lead',allow('calling.manage'),controller.convertToLead);
+router.patch('/:id',allow('calling.manage'),controller.update);
+router.delete('/:id',allow('calling.manage'),controller.remove);
+module.exports=router;

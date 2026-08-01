@@ -1,0 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+const pool = require('../config/db');
+
+(async () => {
+  const sql = fs.readFileSync(path.join(__dirname, '../../../database/rbac_migration.sql'), 'utf8');
+  for (const statement of sql.split(';').map(item => item.trim()).filter(Boolean)) await pool.query(statement);
+  console.log('RBAC migration completed');
+  await pool.end();
+})().catch(async error => { console.error(error.message); await pool.end(); process.exit(1); });

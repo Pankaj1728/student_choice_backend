@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS student_choice_crm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE student_choice_crm;
+CREATE TABLE IF NOT EXISTS roles (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, `key` VARCHAR(50) NOT NULL UNIQUE, name VARCHAR(80) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS permissions (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, `key` VARCHAR(80) NOT NULL UNIQUE, name VARCHAR(120) NOT NULL) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS role_permissions (role_id INT UNSIGNED NOT NULL, permission_id INT UNSIGNED NOT NULL, PRIMARY KEY(role_id,permission_id), FOREIGN KEY(role_id) REFERENCES roles(id) ON DELETE CASCADE, FOREIGN KEY(permission_id) REFERENCES permissions(id) ON DELETE CASCADE) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS users (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, role_id INT UNSIGNED NOT NULL, name VARCHAR(100) NOT NULL, email VARCHAR(150) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL, is_active TINYINT(1) NOT NULL DEFAULT 1, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY(role_id) REFERENCES roles(id)) ENGINE=InnoDB;
+INSERT IGNORE INTO roles (`key`,name) VALUES ('super_admin','Super Admin'),('admin','Administrator'),('manager','Manager'),('loan_advisor','Loan Advisor');
+INSERT IGNORE INTO permissions (`key`,name) VALUES ('dashboard.view','View dashboard'),('leads.view','View leads'),('leads.manage','Manage leads'),('calling.view','View calling'),('calling.manage','Manage calls'),('files.view','View files'),('files.manage','Manage files'),('reports.view','View reports'),('users.manage','Manage users');
+INSERT IGNORE INTO role_permissions(role_id,permission_id) SELECT r.id,p.id FROM roles r CROSS JOIN permissions p WHERE r.`key`='admin';
+INSERT IGNORE INTO role_permissions(role_id,permission_id) SELECT r.id,p.id FROM roles r CROSS JOIN permissions p WHERE r.`key`='super_admin';
+INSERT IGNORE INTO role_permissions(role_id,permission_id) SELECT r.id,p.id FROM roles r JOIN permissions p ON p.`key` IN ('dashboard.view','leads.view','leads.manage','calling.view','calling.manage','files.view','files.manage','reports.view') WHERE r.`key`='manager';
+INSERT IGNORE INTO role_permissions(role_id,permission_id) SELECT r.id,p.id FROM roles r JOIN permissions p ON p.`key` IN ('dashboard.view','leads.view','calling.view','files.view') WHERE r.`key`='loan_advisor';

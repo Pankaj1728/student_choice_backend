@@ -1,0 +1,28 @@
+{
+  "name": "student-choice-crm-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/scripts/seed-admin.js",
+    "migrate:rbac": "node src/scripts/migrate-rbac.js",
+    "migrate:leads": "node src/scripts/migrate-leads.js",
+    "migrate:calls": "node src/scripts/migrate-calls.js",
+    "migrate:calls-unique-phone": "node src/scripts/migrate-call-unique-phone.js",
+    "verify:leads": "node src/scripts/verify-leads.js",
+    "verify:calls": "node src/scripts/verify-calls.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.10.2"
+  },
+  "devDependencies": { "nodemon": "^3.1.4" }
+}

@@ -1,0 +1,2 @@
+/* Calling numbers are created only through the bulk upload flow. */
+.calling2 .c2actions > button.c2primary:last-child { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }

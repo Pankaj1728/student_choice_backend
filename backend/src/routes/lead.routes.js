@@ -1,0 +1,12 @@
+const router = require('express').Router();
+const controller = require('../controllers/lead.controller');
+const { authenticate, allow } = require('../middleware/auth');
+router.use(authenticate);
+router.get('/meta', allow('leads.view'), controller.meta);
+router.get('/', allow('leads.view'), controller.list);
+router.get('/:id', allow('leads.view'), controller.get);
+router.post('/', allow('leads.manage'), controller.create);
+router.post('/bulk', allow('leads.manage'), controller.bulkCreate);
+router.patch('/:id', allow('leads.manage'), controller.update);
+router.delete('/:id', allow('leads.manage'), controller.remove);
+module.exports = router;

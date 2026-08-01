@@ -1,0 +1,1 @@
+import {useLocation} from 'react-router-dom'; export default function Placeholder(){const title=useLocation().pathname.slice(1)||'Dashboard';return <section className="page"><h1>{title[0].toUpperCase()+title.slice(1)}</h1><p>This secured module will be built in the next phase.</p></section>}

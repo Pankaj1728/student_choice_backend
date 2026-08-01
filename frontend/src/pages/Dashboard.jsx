@@ -1,0 +1,2 @@
+import {useAuth} from '../auth/AuthContext';
+export default function Dashboard(){const {user}=useAuth();return <section className="page"><h1>Welcome back, {user.name}! 👋</h1><p>Role-based access is enabled for your account.</p><div className="card"><h2>{user.role}</h2><p>You can only see CRM modules permitted for this role. Backend APIs will enforce the same permission rules.</p><div className="chips">{user.permissions.map(x=><span key={x}>{x}</span>)}</div></div></section>}

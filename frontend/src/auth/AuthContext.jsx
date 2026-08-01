@@ -1,0 +1,3 @@
+import {createContext,useContext,useEffect,useState} from 'react'; import http from '../api/http';
+const AuthContext=createContext(null); export const useAuth=()=>useContext(AuthContext);
+export function AuthProvider({children}){const [user,setUser]=useState(null),[loading,setLoading]=useState(true);useEffect(()=>{http.get('/auth/me').then(r=>setUser(r.data.user)).catch(()=>localStorage.removeItem('crm_token')).finally(()=>setLoading(false))},[]);const login=async values=>{const {data}=await http.post('/auth/login',values);localStorage.setItem('crm_token',data.token);setUser(data.user)};const logout=()=>{localStorage.removeItem('crm_token');setUser(null)};return <AuthContext.Provider value={{user,loading,login,logout}}>{children}</AuthContext.Provider>}
