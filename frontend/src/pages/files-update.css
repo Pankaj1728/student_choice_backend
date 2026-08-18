@@ -1,0 +1,267 @@
+.files-update-container {
+  max-width: none;
+  background: transparent;
+  color: #35435a;
+  font-family: 'Nunito', sans-serif;
+  padding: 32px;
+}
+
+.fu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.fu-head h1 {
+  margin: 6px 0 3px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #28364e;
+}
+
+.fu-head p {
+  margin: 0;
+  color: #7c8798;
+  font-size: 14px;
+}
+
+.fu-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fu-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e2e5ed;
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+}
+
+.fu-filters label {
+  height: 40px;
+  border: 1px solid #d9dde6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  flex: 1;
+  color: #718095;
+}
+
+.fu-filters input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 0 8px;
+  font: 13px Nunito;
+  color: #35435a;
+}
+
+.fu-filters select {
+  height: 40px;
+  border: 1px solid #d9dde6;
+  border-radius: 8px;
+  padding: 0 10px;
+  font: 12px Nunito;
+  color: #35435a;
+  background: #fff;
+}
+
+.fu-filters button {
+  border: 0;
+  background: none;
+  color: #6713c8;
+  font: 800 12px Nunito;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.fu-count {
+  display: flex;
+  justify-content: space-between;
+  margin: 13px 1px;
+  color: #7e8999;
+  font-size: 12px;
+}
+
+.fu-count b {
+  color: #38445a;
+}
+
+.fu-table-wrapper {
+  border: 1px solid #e0e3eb;
+  border-radius: 13px;
+  overflow-x: auto;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+.fu-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 3200px;
+  white-space: nowrap;
+}
+
+.fu-table th {
+  background: #f9fafc;
+  color: #87909f;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  padding: 14px 16px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.fu-table th.bank-header {
+  color: #6012c7;
+  background: #f3ebfc;
+}
+
+.fu-table th.remarks-header {
+  color: #87909f;
+  background: #f9fafc;
+}
+
+.fu-table td {
+  border-top: 1px solid #eef0f4;
+  padding: 13px 16px;
+  color: #526076;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.fu-phone {
+  color: #6500d6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fu-phone:hover {
+  text-decoration: underline;
+}
+
+.bank-status-pill {
+  padding: 4px 9px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 900;
+  display: inline-block;
+}
+
+.st-login { background: #e8efff; color: #3260b8; }
+.st-sanctioned { background: #dff0ff; color: #1675b7; }
+.st-rejected { background: #ffe7ea; color: #c73650; }
+.st-pending { background: #fff3d9; color: #9e6803; }
+.st-moved { background: #eee6ff; color: #6d27ca; }
+.st-not_moved { background: #f0f2f5; color: #788596; }
+
+.action-edit-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e4ec;
+  background: #fff;
+  color: #6811c9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-edit-btn:hover {
+  background: #f4ebff;
+  border-color: #6811c9;
+}
+
+.action-wa-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: #25D366;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.action-wa-btn:hover {
+  background: #1eb956;
+  transform: scale(1.05);
+}
+
+.fu-pager {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 24px;
+  color: #778296;
+  font-size: 12px;
+}
+
+.fu-pager button {
+  border: 1px solid #dce0e8;
+  background: #fff;
+  color: #6120be;
+  border-radius: 7px;
+  padding: 8px 14px;
+  font: 700 12px Nunito;
+  cursor: pointer;
+}
+
+.fu-pager button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.bank-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.bank-card-field {
+  background: #f7f8fb;
+  border: 1px solid #e2e5ed;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.bank-card-field strong {
+  display: block;
+  font-size: 11px;
+  color: #6012c7;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bank-card-field input, .bank-card-field select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d9dfe8;
+  background: #ffffff;
+  color: #35435a;
+  font: 12px Nunito;
+}

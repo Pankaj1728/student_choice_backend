@@ -1,10 +1,73 @@
 const bcrypt = require('bcryptjs');
+const UserModel = require('../models/user.model');
 const pool = require('../config/db');
 const AppError = require('../utils/app-error');
 const asyncHandler = require('../utils/async-handler');
 
-async function validRole(roleId) { const [rows] = await pool.execute('SELECT id FROM roles WHERE id=?', [Number(roleId)]); if (!rows[0]) throw new AppError('Select a valid role', 422); }
-exports.list = asyncHandler(async (_req, res) => { const [users] = await pool.query('SELECT u.id,u.name,u.email,u.is_active,u.created_at,r.id role_id,r.name role,r.`key` role_key FROM users u JOIN roles r ON r.id=u.role_id ORDER BY u.id DESC'); res.json({ users }); });
-exports.create = asyncHandler(async (req, res) => { const { name, email, password, roleId } = req.body; if (!name || !email || !password || !roleId) throw new AppError('Name, email, password and role are required', 422); await validRole(roleId); try { const hash=await bcrypt.hash(password,12); const [result]=await pool.execute('INSERT INTO users(role_id,name,email,password) VALUES (?,?,?,?)',[Number(roleId),String(name).trim(),String(email).trim().toLowerCase(),hash]); res.status(201).json({ id: result.insertId }); } catch(error) { if(error.code==='ER_DUP_ENTRY') throw new AppError('This email address is already in use',409); throw error; } });
-exports.update = asyncHandler(async (req, res) => { const id=Number(req.params.id); const { name, email, password, roleId, isActive }=req.body; const [rows]=await pool.execute('SELECT id FROM users WHERE id=?',[id]); if(!rows[0])throw new AppError('User not found',404); if(roleId)await validRole(roleId); const fields=[], values=[]; if(name){fields.push('name=?');values.push(String(name).trim());}if(email){fields.push('email=?');values.push(String(email).trim().toLowerCase());}if(roleId){fields.push('role_id=?');values.push(Number(roleId));}if(typeof isActive==='boolean'){fields.push('is_active=?');values.push(isActive?1:0);}if(password){fields.push('password=?');values.push(await bcrypt.hash(password,12));}if(!fields.length)throw new AppError('No changes provided',422);values.push(id);await pool.query(`UPDATE users SET ${fields.join(',')} WHERE id=?`,values);res.json({ok:true}); });
-exports.remove = asyncHandler(async (req,res)=>{const id=Number(req.params.id);if(id===req.user.id)throw new AppError('You cannot delete your own account',422);const [result]=await pool.execute('DELETE FROM users WHERE id=?',[id]);if(!result.affectedRows)throw new AppError('User not found',404);res.json({ok:true});});
+function cleanString(v) { return String(v || '').trim(); }
+
+exports.list = asyncHandler(async (_req, res) => {
+  const users = await UserModel.findAll();
+  res.json({ users });
+});
+
+exports.get = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(Number(req.params.id));
+  if (!user) throw new AppError('User not found', 404);
+  res.json({ user });
+});
+
+exports.create = asyncHandler(async (req, res) => {
+  const name = cleanString(req.body.name);
+  const email = cleanString(req.body.email).toLowerCase();
+  const password = String(req.body.password || '');
+  const roleId = Number(req.body.roleId);
+  const isActive = req.body.isActive === undefined ? 1 : (req.body.isActive ? 1 : 0);
+
+  if (!name || !email || !password || !roleId) throw new AppError('Name, email, password, and role are required', 422);
+
+  const [roles] = await pool.execute('SELECT id FROM roles WHERE id=?', [roleId]);
+  if (!roles[0]) throw new AppError('Selected role does not exist', 422);
+
+  const existing = await UserModel.findByEmail(email);
+  if (existing) throw new AppError('Email is already registered', 409);
+
+  const passwordHash = await bcrypt.hash(password, 10);
+  const user = await UserModel.create({ name, email, passwordHash, roleId, isActive });
+  res.status(201).json({ user });
+});
+
+exports.update = asyncHandler(async (req, res) => {
+  const id = Number(req.params.id);
+  const found = await UserModel.findById(id);
+  if (!found) throw new AppError('User not found', 404);
+
+  const name = req.body.name !== undefined ? cleanString(req.body.name) : undefined;
+  const email = req.body.email !== undefined ? cleanString(req.body.email).toLowerCase() : undefined;
+  const password = req.body.password ? String(req.body.password) : null;
+  const roleId = req.body.roleId !== undefined ? Number(req.body.roleId) : undefined;
+  const isActive = req.body.isActive !== undefined ? (req.body.isActive ? 1 : 0) : undefined;
+
+  if (email) {
+    const existing = await UserModel.findByEmail(email);
+    if (existing && existing.id !== id) throw new AppError('Email is already in use', 409);
+  }
+
+  if (roleId) {
+    const [roles] = await pool.execute('SELECT id FROM roles WHERE id=?', [roleId]);
+    if (!roles[0]) throw new AppError('Selected role does not exist', 422);
+  }
+
+  const passwordHash = password ? await bcrypt.hash(password, 10) : undefined;
+  const user = await UserModel.update(id, { name, email, passwordHash, roleId, isActive });
+  res.json({ user });
+});
+
+exports.remove = asyncHandler(async (req, res) => {
+  const id = Number(req.params.id);
+  if (req.user.id === id) throw new AppError('You cannot delete your own account', 400);
+
+  const ok = await UserModel.remove(id);
+  if (!ok) throw new AppError('User not found', 404);
+  res.json({ ok: true });
+});

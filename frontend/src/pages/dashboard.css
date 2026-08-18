@@ -1,0 +1,227 @@
+/* Dashboard Styling - Matching Exact Screenshot Design */
+.dash-container {
+  padding: 24px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #111827;
+}
+
+.dash-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dash-header-text h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-header-text p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.dash-role-badge {
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dash-role-badge.advisor {
+  background: #EEF2FF;
+  color: #4F46E5;
+  border: 1px solid #C7D2FE;
+}
+
+.dash-role-badge.admin {
+  background: #F0FDF4;
+  color: #166534;
+  border: 1px solid #BBF7D0;
+}
+
+/* Layout Grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* KPI Stat Cards Row (5 Cards) */
+.dash-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .dash-kpi-row {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+.dash-kpi-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 14px;
+  text-align: center;
+  border: 1.5px solid #e0e7ff;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dash-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+}
+
+.dash-kpi-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f3f0ff;
+  border: 1px solid #ddd6fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #6d28d9;
+}
+
+.dash-kpi-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 6px;
+}
+
+.dash-kpi-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* Middle Section: Charts Row */
+.dash-charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .dash-charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-chart-card {
+  background: linear-gradient(135deg, #5b06e8 0%, #7b12ff 100%);
+  border-radius: 18px;
+  padding: 24px;
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(91, 6, 232, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 380px;
+}
+
+.dash-chart-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.dash-chart-body {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Right Sidebar Reports Column */
+.dash-reports-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dash-report-card {
+  background: linear-gradient(135deg, #6002ee 0%, #7c1df0 100%);
+  border-radius: 18px;
+  padding: 20px;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(96, 2, 238, 0.3);
+}
+
+.dash-report-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.dash-report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dash-report-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dash-report-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-report-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.dash-report-val {
+  font-size: 16px;
+  font-weight: 800;
+}

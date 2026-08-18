@@ -1,0 +1,237 @@
+.pf-container {
+  max-width: none;
+  background: transparent;
+  color: #35435a;
+  font-family: 'Nunito', sans-serif;
+  padding: 32px;
+}
+
+.pf-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pf-head h1 {
+  margin: 6px 0 3px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #28364e;
+}
+
+.pf-head p {
+  margin: 0;
+  color: #7c8798;
+  font-size: 14px;
+}
+
+.pf-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e2e5ed;
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+}
+
+.pf-filters label {
+  height: 40px;
+  border: 1px solid #d9dde6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  flex: 1;
+  color: #718095;
+}
+
+.pf-filters input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 0 8px;
+  font: 13px Nunito;
+  color: #35435a;
+}
+
+.pf-filters button {
+  border: 0;
+  background: none;
+  color: #6713c8;
+  font: 800 12px Nunito;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.pf-count {
+  display: flex;
+  justify-content: space-between;
+  margin: 13px 1px;
+  color: #7e8999;
+  font-size: 12px;
+}
+
+.pf-count b {
+  color: #38445a;
+}
+
+.pf-table-wrapper {
+  border: 1px solid #e0e3eb;
+  border-radius: 13px;
+  overflow-x: auto;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+.pf-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 2350px;
+  white-space: nowrap;
+}
+
+.pf-table th {
+  background: #f9fafc;
+  color: #87909f;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  padding: 14px 16px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.pf-table th.pf-highlight {
+  color: #6012c7;
+  background: #f3ebfc;
+}
+
+.pf-table td {
+  border-top: 1px solid #eef0f4;
+  padding: 13px 16px;
+  color: #526076;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.pf-phone {
+  color: #6500d6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pf-phone:hover {
+  text-decoration: underline;
+}
+
+.pf-badge {
+  padding: 4px 9px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 900;
+  display: inline-block;
+}
+
+.st-paid { background: #ddf8e6; color: #17834b; }
+.st-pending { background: #fff3d9; color: #9e6803; }
+.st-sanctioned { background: #dff0ff; color: #1675b7; }
+.st-rejected { background: #ffe7ea; color: #c73650; }
+
+.pf-action-edit {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e4ec;
+  background: #fff;
+  color: #6811c9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pf-action-edit:hover {
+  background: #f4ebff;
+  border-color: #6811c9;
+}
+
+.pf-action-wa {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: #25D366;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pf-action-wa:hover {
+  background: #1eb956;
+  transform: scale(1.05);
+}
+
+.pf-pager {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 24px;
+  color: #778296;
+  font-size: 12px;
+}
+
+.pf-pager button {
+  border: 1px solid #dce0e8;
+  background: #fff;
+  color: #6120be;
+  border-radius: 7px;
+  padding: 8px 14px;
+  font: 700 12px Nunito;
+  cursor: pointer;
+}
+
+.pf-pager button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.pf-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.pf-modal-grid label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #35435a;
+}
+
+.pf-modal-grid input, .pf-modal-grid select, .pf-modal-grid textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid #d9dfe8;
+  border-radius: 8px;
+  padding: 10px;
+  font: 13px Nunito;
+  color: #35435a;
+  background: #ffffff;
+}
+
+.pf-modal-grid .full {
+  grid-column: 1 / -1;
+}

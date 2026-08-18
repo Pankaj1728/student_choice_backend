@@ -1,0 +1,239 @@
+.cs-container {
+  max-width: none;
+  background: transparent;
+  color: #35435a;
+  font-family: 'Nunito', sans-serif;
+  padding: 32px;
+}
+
+.cs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cs-head h1 {
+  margin: 6px 0 3px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #28364e;
+}
+
+.cs-head p {
+  margin: 0;
+  color: #7c8798;
+  font-size: 14px;
+}
+
+.cs-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e2e5ed;
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+}
+
+.cs-filters label {
+  height: 40px;
+  border: 1px solid #d9dde6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  flex: 1;
+  color: #718095;
+}
+
+.cs-filters input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 0 8px;
+  font: 13px Nunito;
+  color: #35435a;
+}
+
+.cs-filters button {
+  border: 0;
+  background: none;
+  color: #6713c8;
+  font: 800 12px Nunito;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.cs-count {
+  display: flex;
+  justify-content: space-between;
+  margin: 13px 1px;
+  color: #7e8999;
+  font-size: 12px;
+}
+
+.cs-count b {
+  color: #38445a;
+}
+
+.cs-table-wrapper {
+  border: 1px solid #e0e3eb;
+  border-radius: 13px;
+  overflow-x: auto;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+.cs-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 2350px;
+  white-space: nowrap;
+}
+
+.cs-table th {
+  background: #f9fafc;
+  color: #87909f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ebedf2;
+}
+
+.cs-table th.cs-highlight {
+  background: #f4f0fd;
+  color: #5c18b7;
+}
+
+.cs-table td {
+  padding: 13px 16px;
+  font-size: 12px;
+  color: #4a5668;
+  border-bottom: 1px solid #f0f2f7;
+  vertical-align: middle;
+}
+
+.cs-table tr:hover td {
+  background: #fbfcfd;
+}
+
+.cs-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.cs-badge.st-applied, .cs-badge.st-issued, .cs-badge.st-opened, .cs-badge.st-delivered {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.cs-badge.st-opted, .cs-badge.st-in-process {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.cs-badge.st-not-interested, .cs-badge.st-not-required {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.cs-action-edit {
+  border: none;
+  background: #f0ebff;
+  color: #6713c8;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-action-edit:hover {
+  background: #6713c8;
+  color: #fff;
+}
+
+.cs-action-wa {
+  color: #25d366;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: #e8faf0;
+  transition: all 0.2s ease;
+}
+
+.cs-action-wa:hover {
+  background: #25d366;
+  color: #fff;
+}
+
+.cs-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cs-pager button {
+  border: 1px solid #dcdfe6;
+  background: #fff;
+  color: #4a5568;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cs-pager button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cs-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.cs-modal-grid label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #616e80;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cs-modal-grid input, .cs-modal-grid select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.cs-modal-grid .full {
+  grid-column: 1 / -1;
+}

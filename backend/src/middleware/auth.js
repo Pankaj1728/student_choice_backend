@@ -13,4 +13,8 @@ exports.authenticate = asyncHandler(async (req, _res, next) => {
   const [permissions] = await pool.execute(`SELECT p.\`key\` FROM permissions p JOIN role_permissions rp ON rp.permission_id=p.id JOIN users u ON u.role_id=rp.role_id WHERE u.id=?`, [rows[0].id]);
   req.user = { ...rows[0], permissions: permissions.map(p => p.key) }; next();
 });
-exports.allow = permission => (req, _res, next) => { if (!req.user.permissions.includes(permission)) return next(new AppError('You do not have access to this resource', 403)); next(); };
+exports.allow = (...permissions) => (req, _res, next) => {
+  const hasAccess = permissions.some(p => req.user.permissions.includes(p));
+  if (!hasAccess) return next(new AppError('You do not have access to this resource', 403));
+  next();
+};
